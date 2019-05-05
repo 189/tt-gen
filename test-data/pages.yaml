@@ -1,0 +1,148 @@
+- 
+  name: friendsdealShared
+  title: @ctx.Preload("friendsDeal_Group_ShareInfo.info.title")
+  path: /friendsdeal/group
+  proxy: /friendsdeal.group
+  enable: true
+  metas:
+    - 
+      name: description
+      content: @ctx.Preload("friendsDeal_Group_ShareInfo.info.description")
+    - 
+      property: og:title
+      content: @ctx.Preload("friendsDeal_Group_ShareInfo.info.title")
+    - 
+      property: og:type
+      content: product
+    - 
+      property: og:image
+      content: @ctx.Preload("friendsDeal_Group_ShareInfo.info.imageURL")
+    - 
+      property: og:description
+      content: @ctx.Preload("friendsDeal_Group_ShareInfo.info.description")
+  preloads:
+    - 
+      apiType: api
+      method: friendsDeal.Group/ShareInfo
+      params: '{"groupID": "{{query "groupid"}}", "type": 1}'
+
+- 
+  name: friendsDealEventShared
+  title: @ctx.Preload("friendsDeal_Group_ShareInfo.info.title")
+  path: /friendsdeal/event
+  proxy: /friendsdeal.event
+  enable: true
+  metas:
+    - 
+      name: description
+      content: @ctx.Preload("friendsDeal_Group_ShareInfo.info.description")
+    - 
+      property: og:title
+      content: @ctx.Preload("friendsDeal_Group_ShareInfo.info.title")
+    - 
+      property: og:type
+      content: product
+    - 
+      property: og:image
+      content: @ctx.Preload("friendsDeal_Group_ShareInfo.info.imageURL")
+    - 
+      property: og:description
+      content: @ctx.Preload("friendsDeal_Group_ShareInfo.info.description")
+  preloads:
+    - 
+      apiType: api
+      method: friendsDeal.Group/ShareInfo
+      params: '{"settingId": "{{query "eventid"}}", "gpId": "{{query "producturl"}}", "type": 2}'
+
+- 
+  name: productDetail
+  title: @ctx.Preload("Product_GetPrimeProductDetail.productName")
+  path: /product/*
+  proxy: /product.*
+  enable: true
+  metas:
+    - 
+      property: og:title
+      content: @ctx.Preload("Product_GetPrimeProductDetail.productName")
+    - 
+      property: og:type
+      content: product
+    - 
+      property: og:image
+      content: @ctx.Preload("Product_GetPrimeProductDetail.productImage")
+  preloads:
+    - 
+      apiType: api
+      method: Product/GetPrimeProductDetail
+      params: '{"productUrl": "{{getGpid "url" | urlDecode}}", "userInfo": null}'
+  links:
+    -
+      rel: canonical
+      href: @ctx.Get("EzbuyLinkUrl")
+
+
+- 
+  name: searchResult
+  path: /search
+  proxy: /search
+  enable: true
+
+- 
+  name: categoryResult
+  path: 
+    - /category
+    - /category/*
+  enable: true
+  links:
+    -
+      rel: canonical
+      href: @ctx.Get("EzbuyLinkUrl")
+
+- 
+  name: base
+  path: 
+    - /help.html
+    - /FAQ/Group
+    - /FAQ/Detail
+    - /login
+    - /register
+    - /forgetpassword
+    - /registerwelcome
+    - /categories*
+    - /shoppingcart
+    - /marketing
+    - /mobile_checkout
+    - /homefurnitureconceptstore
+    - /my_prime_wishlist
+    - /prime_wishlist_add_product
+    - /recent_prime_wishlist
+    - /index.html
+    - /
+    - /checkout
+    - /newcheckout
+    - /transfer-successful
+    - /payment-successful
+    - /payment-failed
+    - /payment-waitting
+    - /pay-successful-redirect
+    - /pay
+    - /pay/*
+    - /prime-membership-pay-successful
+    - /quickguide/newuserguide
+    - /deliveryfeeinfo
+    - /cmspage/*
+    - /seller/*
+    - /friendsdeal
+    - /friendsdeal/mydeal
+    - /friendsdeal/termofcondition
+    - /friendsdeal/landingpage
+    - /login-or-register
+    - /pay-successful-redirect
+    - /black-friday
+    - /12-12-taobao-sale
+    - /surf.html
+    - /compensation-rules
+    - /choose-delivery*
+    - /delivery-station*
+    - /confirm-delivery-name-phone
+  enable: true

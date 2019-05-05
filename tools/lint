@@ -1,0 +1,22 @@
+#!/bin/sh
+
+files=$(git diff --cached --name-only --diff-filter=ACM | grep -v "services/" | grep -v "main.js")
+tsFiles=$(echo "$files" | grep -E "\.tsx?$")
+
+if [ "$tsFiles" = "" ]; then
+    exit 0
+fi
+
+pass=true
+
+for file in ${tsFiles}; do
+    ./node_modules/.bin/tslint -t stylish ${file}
+	if [[ $? != 0 ]] ; then
+		pass=false
+	fi
+done
+
+if ! $pass; then
+    echo "\033[91mCOMMIT FAILED:\033[0m Your commit contains files that should pass lint but do not. Please fix the errors and try again."
+    exit 1
+fi
