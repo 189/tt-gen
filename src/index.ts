@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync, existsSync } from "fs";
 import { resolve } from "path";
 import { createHash } from "crypto";
 import * as jsBeautify from "js-beautify";
-import { forceChangeBranch, getCurrentBranch, clearGitRepo, submitCommit } from "simple-git";
+import { forceChangeBranch, getCurrentBranch, clearGitRepo, submitCommit } from "./simple-git";
 import { minify } from "html-minifier";
 
 interface IPageHTML {

@@ -1,5 +1,5 @@
 {
-  "name": "titans-gen",
+  "name": "tt-gen",
   "version": "1.2.0",
   "description": "",
   "main": "lib/index.js",
@@ -14,7 +14,6 @@
     "cheerio": "^1.0.0-rc.2",
     "html-minifier": "^3.5.8",
     "js-beautify": "^1.6.14",
-    "simple-git": "git+ssh://git@git.ezbuy.me:10022/ezbuyfe/simple-git.git",
     "yamljs": "^0.3.0"
   },
   "typings": "lib/index.d.ts",
